@@ -27,7 +27,51 @@ Step 12: If any valid condition is satisfied, display **"Date is valid."**<br>
 Step 13: Otherwise, display **"Date is invalid."**<br>
 Step 14: Stop<br>
 ## Program:
+```
+#include <stdio.h>
+
+void validateDate() {
+    int dd, mm, yy;
+    printf("Enter date (DD/MM/YYYY): ");
+    scanf("%d/%d/%d", &dd, &mm, &yy);
+
+    if (yy < 1900 || yy > 9999) {
+        printf("Year is not valid.\n");
+        return;
+    }
+    if (mm < 1 || mm > 12) {
+        printf("Month is not valid.\n");
+        return;
+    }
+
+    // Check days
+    if (mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12) {
+        if (dd >= 1 && dd <= 31) printf("Date is valid.\n");
+        else printf("Date is invalid.\n");
+    }
+    else if (mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+        if (dd >= 1 && dd <= 30) printf("Date is valid.\n");
+        else printf("Date is invalid.\n");
+    }
+    else if (mm == 2) {
+        if ((yy % 400 == 0) || (yy % 100 != 0 && yy % 4 == 0)) {
+            if (dd >= 1 && dd <= 29) printf("Date is valid.\n");
+            else printf("Date is invalid.\n");
+        } else {
+            if (dd >= 1 && dd <= 28) printf("Date is valid.\n");
+            else printf("Date is invalid.\n");
+        }
+    }
+}
+
+int main() {
+    validateDate();
+    return 0;
+}
+```
 ## Output:
+<img width="376" height="57" alt="image" src="https://github.com/user-attachments/assets/017cf14f-765a-46d1-8def-40d7c46537d5" />
+
 ## Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -59,7 +103,20 @@ Step 11: Store the returned value in `minimum`.<br>
 Step 12: Display the returned maximum and minimum values.<br>
 Step 13: Stop<br>
 ## Program:
+```
+#include <stdio.h>
+int max(int a,int b){ return a>b?a:b; }
+int min(int a,int b){ return a<b?a:b; }
+int main(){
+    int x,y;
+    scanf("%d%d",&x,&y);
+    printf("Max=%d\nMin=%d\n",max(x,y),min(x,y));
+    return 0;
+}
+```
 ## Output:
+<img width="73" height="109" alt="image" src="https://github.com/user-attachments/assets/98de6ecb-a5b9-4cba-bb16-2303b5fba633" />
+
 ## Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -93,7 +150,20 @@ Step 9: Inside `ftocel()` function:<br>
 Step 10: Print the returned Celsius value in `main()`.<br>
 Step 11: Stop<br>
 ## Program:
+```
+#include <stdio.h>
+float celtof(float c){ return (c*9/5)+32; }
+float ftocel(float f){ return (f-32)*5/9; }
+int main(){
+    float c,f;
+    scanf("%f%f",&c,&f);
+    printf("F=%.2f\nC=%.2f\n",celtof(c),ftocel(f));
+    return 0;
+}
+```
 ## Output:
+<img width="99" height="109" alt="image" src="https://github.com/user-attachments/assets/6b455e3b-72fc-4180-8774-d34f3a4b0675" />
+
 ## Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -131,7 +201,27 @@ Step 6: In the `main()` function:<br>
 - Call `spiralPrint(R, C, a)` to print the elements in spiral order.<br>
 Step 7: Stop<br>
 ## Program:
+```
+#include <stdio.h>
+void spiralPrint(int m,int n,int a[4][4]){
+    int k=0,l=0;
+    while(k<m && l<n){
+        for(int i=l;i<n;i++) printf("%d ",a[k][i]); k++;
+        for(int i=k;i<m;i++) printf("%d ",a[i][n-1]); n--;
+        if(k<m){ for(int i=n-1;i>=l;i--) printf("%d ",a[m-1][i]); m--; }
+        if(l<n){ for(int i=m-1;i>=k;i--) printf("%d ",a[i][l]); l++; }
+    }
+}
+int main(){
+    int a[4][4]={{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+    spiralPrint(4,4,a);
+    return 0;
+}
+```
 ## Output:
+
+<img width="412" height="28" alt="image" src="https://github.com/user-attachments/assets/24e93a85-0106-4fd3-b7f8-d0badb535514" />
+
 ## Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
 
@@ -157,6 +247,33 @@ Step 5: In `main()` function:<br>
  - Print the modified string.<br>
 Step 6: Stop<br>
 ## Program:
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+void convertFirstCLastC(char str[]){
+    int len=strlen(str);
+    str[0]=toupper(str[0]);
+    str[len-1]=toupper(str[len-1]);
+    for(int i=1;i<len-1;i++)
+        if(str[i]==' '){
+            str[i-1]=toupper(str[i-1]);
+            str[i+1]=toupper(str[i+1]);
+        }
+}
+
+int main(){
+    char str[100];
+    scanf("%[^\n]",str);
+    convertFirstCLastC(str);
+    printf("%s\n",str);
+    return 0;
+}
+```
 ## Output:
+
+<img width="66" height="56" alt="image" src="https://github.com/user-attachments/assets/de7e86a7-4c80-4515-8e73-f14ce2c688c3" />
+
 ## Result: 
 Thus, the program was implemented and executed successfully, and the required output was obtained.
